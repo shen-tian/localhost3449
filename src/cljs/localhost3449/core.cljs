@@ -17,7 +17,6 @@
 
 (defn page []
   [:div
-   [:div (.toT)]
    [:img {:src "/img/fig.png"
           :width "50%"
           :style {:transform (str "rotate(" 
