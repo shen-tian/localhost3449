@@ -16,13 +16,14 @@
 ;; Page
 
 (defn page []
-  [:div
-   [:img {:src "/img/fig.png"
-          :width "50%"
-          :style {:transform (str "rotate(" 
-                                  (/ (.getTime @timer) 10)
-                                  "deg)")}}]
-   [:span "Maybe " [:code "lein figwheel"] " first?"]])
+  [:div.page
+   [:div.fig
+    [:img {:src "/img/fig.png"
+           :style {:transform (str "rotate(" 
+                                   (/ (.getTime @timer) 10)
+                                   "deg)")}}]]
+   [:div.text
+    [:p "Maybe " [:code "lein figwheel"] " first?"]]])
 
 
 

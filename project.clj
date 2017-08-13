@@ -23,7 +23,8 @@
                      :compiler     {:output-to     "resources/public/css/screen.css"
                                     :pretty-print? true}}]}
 
-    :profiles
+  :prep-tasks [["garden" "once"]]
+  :profiles
   {:dev
    {:dependencies []
 
@@ -51,5 +52,5 @@
                     :elide-asserts   true
                     :closure-defines {goog.DEBUG false}
                     :pretty-print    false}}
-
+    
     ]})
