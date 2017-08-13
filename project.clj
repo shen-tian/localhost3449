@@ -9,7 +9,7 @@
   :source-paths ["src/clj"]
 
   :plugins [[lein-cljsbuild "1.1.4"]
-            [lein-garden "0.2.8"]]
+            [lein-garden "0.3.0"]]
 
   :clean-targets ^{:protect false} ["resources/public/js"
                                     "target"
