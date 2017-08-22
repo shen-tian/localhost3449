@@ -17,6 +17,9 @@
 (defn angle! [rpm]
   (mod (* rpm (.getTime @timer) (/ 360 60000)) 360))
 
+(defn angle-rad! [rpm]
+  (* 2 (.-PI js/Math) (/ (angle! rpm) 360)))
+
 (defn ring [count radius child]
   (into [:g] (for [theta (map #(* 360 (/ % count)) (range count))]
                [:g {:transform (str "rotate(" theta " 0 0)"
@@ -35,15 +38,15 @@
 (defn page []
   [:div.page
    [:div.fig
-    [:svg {:height 300
-           :width 300
+    [:svg {:width 350
+           :max-width "100%"
            :viewBox "0 0 200 200"}
      [:g {:transform "translate(100,100)"}
       [:circle {:r 100
                 :fill :purple}]
       [:circle {:r 97 
                 :fill :lightgreen}]
-      [:circle {:r 90
+      [:circle {:r 89
                 :fill :fuchsia}]
       (into [:g] (for [{:keys [rpm n radius]} 
                        [{:rpm 78 :n 8  :radius 13}
@@ -55,7 +58,50 @@
                    [:g (rotate! rpm)
                     [ring n radius pip]]))]]]
    [:div.text
-    [:p "Maybe " [:code "lein figwheel"] " first?"]]])
+    [:p "Try " [:code "lein figwheel"] " first?"]
+    [:p [:a {:href "https://github.com/bhauman/lein-figwheel"}
+         "Go cut some fruit"]]]
+   [:div {:style {:width "100%"
+                  :height 100
+                  :position "fixed"
+                  :bottom 0
+                  ;;:background-color :purple
+                  }}
+    [:svg {:width "100%"
+           :height 100
+           :preserveAspectRatio "none"
+           :viewBox "0 0 100 100"}
+     (let [n 50]
+       (into [:g]
+             (for [x (map #(* (/ 100 n) %) (range n))]
+               (let [w (/ 100 n)
+                     h (+ (* 50 (.sin js/Math 
+                                      (+ (angle-rad! 11) 
+                                         (/ x 10 (.-PI js/Math))))) 50)]
+                 [:rect {:x x :y (- 100 h) 
+                         :width w :height h 
+                         :fill :lightgreen}]))))
+     (let [n 50]
+       (into [:g]
+             (for [x (map #(* (/ 100 n) %) (range n))]
+               (let [w (/ 100 n)
+                     h (+ (* 30 (.sin js/Math 
+                                      (+ (angle-rad! 17) 
+                                         (/ x 10 (.-PI js/Math))))) 50)]
+                 [:rect {:x x :y (- 100 h) 
+                         :width w :height h 
+                         :fill :fuchsia}]))))
+     (let [n 50]
+       (into [:g]
+             (for [x (map #(* (/ 100 n) %) (range n))]
+               (let [w (/ 100 n)
+                     h (+ (* 30 (.sin js/Math 
+                                      (+ (angle-rad! 21) 
+                                         (/ x 10 (.-PI js/Math))))) 
+                          30)]
+                 [:rect {:x x :y (- 100 h) 
+                         :width w :height h 
+                         :fill :purple}]))))]]])
 
 
 

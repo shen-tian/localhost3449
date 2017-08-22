@@ -14,5 +14,7 @@
     [:img {:width "300px"
            :max-width "100%"}]]
    [:.text {:font-size "24px"
+            :text-align "center"
             :color "white"}]
-   [:code {:color "#E1BEE7"}]])
+   [:code {:color "#E1BEE7"}]
+   [:a {:text-decoration "none"}]])
