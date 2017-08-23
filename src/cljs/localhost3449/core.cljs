@@ -74,7 +74,7 @@
      (let [n 50]
        (into [:g]
              (for [x (map #(* (/ 100 n) %) (range n))]
-               (let [w (/ 100 n)
+               (let [w (inc (/ 100 n))
                      h (+ (* 50 (.sin js/Math 
                                       (+ (angle-rad! 11) 
                                          (/ x 10 (.-PI js/Math))))) 50)]
@@ -84,7 +84,7 @@
      (let [n 50]
        (into [:g]
              (for [x (map #(* (/ 100 n) %) (range n))]
-               (let [w (/ 100 n)
+               (let [w (inc (/ 100 n))
                      h (+ (* 30 (.sin js/Math 
                                       (+ (angle-rad! 17) 
                                          (/ x 10 (.-PI js/Math))))) 50)]
@@ -94,7 +94,7 @@
      (let [n 50]
        (into [:g]
              (for [x (map #(* (/ 100 n) %) (range n))]
-               (let [w (/ 100 n)
+               (let [w (inc (/ 100 n))
                      h (+ (* 30 (.sin js/Math 
                                       (+ (angle-rad! 21) 
                                          (/ x 10 (.-PI js/Math))))) 
